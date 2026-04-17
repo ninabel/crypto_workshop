@@ -59,9 +59,8 @@ if __name__ == "__main__":
     key = "thevarysecretkey"
     key_data = key.encode()
     # create random key data
-    blocksize = 161  # for example, 16 bytes
+    blocksize = 16  # for example, 16 bytes
     key_data = secrets.token_bytes(blocksize)
-    iv = secrets.token_bytes(blocksize)  # initialization vector for key function
     # blocksize = len(key_data)
     if len(sys.argv) < 2:
         print("Simple XOR Encryption/Decryption")
