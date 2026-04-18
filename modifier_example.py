@@ -7,7 +7,7 @@ import secrets
 
 # --- 1. Setup and Encryption ---
 key = secrets.token_bytes(32)  # AES-256
-nonce = secrets.token_bytes(8) # Standard 64-bit nonce for CTR
+nonce = secrets.token_bytes(8)  # Standard 64-bit nonce for CTR
 ctr = Counter.new(64, prefix=nonce)
 cipher = AES.new(key, AES.MODE_CTR, counter=ctr)
 
@@ -35,5 +35,14 @@ decrypted_msg = decrypt_cipher.decrypt(modified_ciphertext)
 # Output Results
 print(f"Original Plaintext:  {plaintext.decode()}")
 print(f"Target Plaintext:    {target.decode()}")
-print(f"---")
+print("---")
 print(f"Decrypted Result:    {decrypted_msg.decode()}")
+
+
+# plaintext2 = b"I hate you"
+# ciphertext2 = cipher.encrypt(plaintext2)
+# modified_ciphertext2 = xor_encrypt_decrypt_block(ciphertext2, A)
+# decrypted_msg2 = decrypt_cipher.decrypt(modified_ciphertext2)
+# print("\n---\n")
+# print(f"Original Plaintext2: {plaintext2.decode()}")
+# print(f"Decrypted Result2:   {decrypted_msg2.decode()}")
