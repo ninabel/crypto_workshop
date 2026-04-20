@@ -5,7 +5,7 @@ import ssl
 import socket
 
 
-def check_tls_certificate(hostname, port):
+def check_tls_certificate(hostname, port=443):
     context = ssl.create_default_context()
     with socket.create_connection((hostname, port)) as sock:
         # try to establish TLS connection, which will automatically verify the certificate
@@ -23,11 +23,11 @@ def check_tls_certificate(hostname, port):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Použití: python tls_certificat.py <hostname> <port>")
+    if len(sys.argv) < 2:
+        print("Použití: python tls_certificat.py <hostname> [<port>]")
         sys.exit(1)
 
     hostname = sys.argv[1]
-    port = int(sys.argv[2])
+    port = int(sys.argv[2]) if len(sys.argv) > 2 else 443
 
     check_tls_certificate(hostname, port)
